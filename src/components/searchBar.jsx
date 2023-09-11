@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 
 const SearchBar = ({ filteredBusinesses, setFilteredBusinesses, business }) => {
   const handleSearch = (e) => {
@@ -40,5 +40,11 @@ const SearchBar = ({ filteredBusinesses, setFilteredBusinesses, business }) => {
     </>
   );
 };
+
+SearchBar.propTypes = {
+  filteredBusinesses: PropTypes.array.isRequired,
+  setFilteredBusinesses: PropTypes.func.isRequired,
+  business: PropTypes.func.isRequired
+}
 
 export default SearchBar;
