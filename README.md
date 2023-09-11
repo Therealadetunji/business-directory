@@ -22,11 +22,11 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [Football-ticketing-App] <a name="about-project"></a>
+# 📖 [Business Directory] <a name="about-project"></a>
 
-> Describe your project in 1 or 2 sentences.
+> Project Description
 
-**[Football-ticketing-App]** An app for reserving a ticket from a collection of matches available for a football season.
+**[Business Directory]** a single-page React application that acts as a business directory. Users should be able to search for businesses based on their name or category. The application should fetch and display business data from a provided JSON API.
 
 ## 🛠 Built With <a name="built-with"></a>
 
