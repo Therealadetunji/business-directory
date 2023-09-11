@@ -1,34 +1,93 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Table } from 'react-bootstrap';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  // create a state variable to hold the data from the mock api
+  const [businesses, setBusinesses] = useState([]);
+
+  // fetch data from mock api
+ 
+  const business = () => { fetch('https://846333da-2b01-4f41-90b0-1c4245c09639.mock.pstmn.io/businesses')
+  .then(response => response.json())
+  // i want to console.log and see the data from the mock api
+  .then(data => 
+    //render all the data from the mock api
+    setBusinesses(
+      data.businesses.map(business => ({
+        name: business.name,
+        category: business.category,
+        address: business.address,
+        phone: business.phone
+      }))
+    ),
+    );
+  }
+    
+    useEffect(() => {
+      business();
+    }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count} + 1
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    // fetched data from mock api is displayed here
+    
+    <div>
+
+      <h1 className="text-center mt-5 mb-5"
+      >Businesses</h1>
+
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <Table className="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Address</th>
+                  <th>Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {businesses.map(business => (
+                      <div key={business.name}>
+                        {business.name}
+                        </div>
+                    ))}
+                  </td>
+                  <td>
+                    {businesses.map(business =>((
+                      <div key={business.category}>
+                        {business.category}
+                        </div>
+                    )))}
+                  </td>
+                  <td>
+                    {businesses.map(business => (
+                      <div key={business.address}>
+                        {business.address}
+                        </div>
+                    ))}
+                  </td>
+                  <td>
+                    {businesses.map(business => (
+                      <div key={business.phone}>
+                        {business.phone}
+                        </div>
+                    ))}
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+            </div>
+            </div>
+            </div>
+
+    </div>
   )
 }
 
